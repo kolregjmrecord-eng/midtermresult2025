@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Jamiatul Madina Kolkata Region - Mid Term Exam 2025</title>
+  <style>
+    /* Attari custom font */
+    @font-face {
+      font-family: 'Attari';
+      src: url('fonts/Attari.ttf') format('truetype');
+    }
+
+    :root{
+      --bg-1:#021227;
+      --bg-2:#07263a;
+      --card:#071726;
+      --muted:#cbd5e1;
+      --gold:#FFD700; --silver:#C0C0C0; --bronze:#CD7F32;
+    }
+
+    body{
+      margin:0;
+      font-family:'Times New Roman','Attari',serif;
+      background:linear-gradient(180deg,var(--bg-1),var(--bg-2));
+      color:var(--muted);
+      font-weight:bold; /* 👈 sab bold */
+    }
+    .wrap{max-width:1200px;margin:28px auto;padding:18px}
+    header{background:#0b2340;border-radius:14px;padding:18px;display:flex;flex-direction:column;align-items:center;position:relative}
+    header .brand{display:flex;align-items:center;gap:14px}
+    header img.logo{width:86px;height:86px;object-fit:contain}
+    header h1{margin:0;font-size:26px;color:white;font-family:'Attari','Times New Roman',serif;}
+    .ribbon{margin-top:12px;padding:8px 16px;border-radius:999px;background:linear-gradient(90deg,#ffd54a,#ffb84d);color:#10203a;font-weight:800}
+    .meta{position:absolute;right:18px;top:18px;font-size:13px}
+    
+    /* region winners */
+    .region-section{margin-top:20px;text-align:center}
+    .blink{font-size:22px;color:#FFD700;animation:blink 1s infinite;font-family:'Attari','Times New Roman',serif;}
+    @keyframes blink{0%,50%,100%{opacity:1}25%,75%{opacity:0}}
+    .region-title{margin-top:12px;font-size:20px;color:#fff;font-family:'Attari','Times New Roman',serif;}
+    .region-winners{margin-top:14px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+    .winner{min-width:220px;padding:14px;border-radius:12px;text-align:center;color:#07203a;position:relative;background:#fff;font-family:'Times New Roman','Attari',serif;}
+    .winner img{width:60px;height:60px;border-radius:50%;object-fit:cover;margin-bottom:6px;border:2px solid #fff}
+    .gold{background:linear-gradient(180deg,#fff7d6,#ffd54a)}
+    .silver{background:linear-gradient(180deg,#f5f7fa,#c7dff9)}
+    .bronze{background:linear-gradient(180deg,#f8efe5,#efb07a)}
+    .badge{position:absolute;top:-12px;right:-12px;font-size:22px}
+    
+    /* cards */
+    .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:22px}
+    .card{background:var(--card);padding:12px;border-radius:12px}
+    .card h3{margin:0 0 8px;color:#e6f3ff;font-size:16px;font-family:'Attari','Times New Roman',serif;}
+    table{width:100%;border-collapse:collapse}
+    th,td{padding:6px;font-size:14px;text-align:center}
+    thead th{color:#ffffff;font-size:14px;text-decoration:underline}
+    tbody tr{border-top:1px dashed rgba(255,255,255,0.05)}
+    td img{width:40px;height:40px;border-radius:50%;object-fit:cover}
+    
+    /* button */
+    .btn{margin-top:20px;padding:10px 18px;border:none;border-radius:8px;background:#ffd54a;color:#10203a;font-weight:700;cursor:pointer}
+    .btn:hover{background:#ffb84d}
+    
+    footer{margin-top:22px;text-align:center;color:#9fb0c8;font-size:13px;line-height:1.6}
+    .extra-footer{color:var(--gold);font-weight:800;margin-top:4px;font-family:'Attari','Times New Roman',serif;}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <img class="logo" src="logo.png" alt="Logo">
+        <div><h1>Jamiatul Madina Kolkata Region</h1></div>
+      </div>
+      <div class="ribbon">Top Students — Mid Term Exam 2025</div>
+      <div class="meta" id="datetime">--</div>
+    </header>
+
+    <!-- ✅ Region Toppers Upar shift kar diya -->
+    <section class="region-section">
+      <div class="blink">🎉 Congratulations 🎉</div>
+      <div class="region-title">🌟 Region Toppers 🌟</div>
+      <div class="region-winners" id="regionWinners"></div>
+    </section>
+
+    <!-- ✅ School wise toppers niche -->
+    <main class="grid" id="schoolsContainer"></main>
+
+    <!-- Export Button -->
+    <div style="text-align:center;">
+      <button class="btn" onclick="exportCSV()">⬇️ Export CSV</button>
+    </div>
+
+    <footer>
+      © Jamiatul Madina Kolkata Region — Mid Term Exam 2025 
+      <div class="extra-footer">MAJLIS TALEEMI UMOOR KOLKATA REGION</div>
+    </footer>
+  </div>
+
+<script>
+const schools = [
+  {name:'Jamiatul Madina Silchar', students:[
+    {rank:1,name:'FURQAN HUSSAIN ',class:'DUAM',percent:96.80,img:'images/furqan.JPG'},
+    {rank:2,name:'AMWAAJ HUSSAIN',class:'DUAM',percent:93,img:'images/amwaaj.jpg'},
+    {rank:2,name:'MUJIBUR HUSSAIN',class:'ULA',percent:93,img:'images/mujibur.jpg'}]},
+    
+  {name:'Jamiatul Madina Asansole', students:[
+    {rank:1,name:'EHTESHAM',class:'ULA',percent:93.15,img:'images/ehtesham.jpg'},
+    {rank:2,name:'NOORUL ARIFEN',class:'IBTIDAIYA',percent:92,img:'images/noorul.jpg'},
+    {rank:3,name:'HASNAIN',class:'AWWAL',percent:91.40,img:'images/hasnain.jpg'}]},
+    
+  {name:'Jamiatul Madina Khidderpore', students:[
+    {rank:1,name:'ALI HAMZA',class:'AWWAL',percent:91.40,img:'images/ali.jpg'},
+    {rank:1,name:'MD SARFARAZ',class:'AWWAL',percent:91.40,img:'images/sarfaraz.jpg'},
+    {rank:2,name:'MD ZAID',class:'ULA',percent:90.86,img:'images/zaid.jpg'}]},
+    
+  {name:'Jamiatul Madina Matiaburuz', students:[
+    {rank:1,name:'MD ROUNAK',class:'ULA',percent:97.43,img:'images/rounak.jpg'},
+    {rank:2,name:'KHAIRUL BASHAR',class:'ULA',percent:95.65,img:'images/bashar.jpg'},
+    {rank:3,name:'DILSHAD',class:'IBTIDAIYA',percent:93,img:'images/dilshad.jpg'}]},
+    
+  {name:'Jamiatul Madina Bhadrak', students:[
+    {rank:1,name:'NOOR NABI',class:'ULA',percent:86.85,img:'images/nabi.jpg'},
+    {rank:2,name:'ALI AKHTAR',class:'AWWAL',percent:80.79,img:'images/akhtar.jpg'},
+    {rank:3,name:'MD RAMZAN',class:'ULA',percent:79.29,img:'images/ramzan.jpg'}]},
+    
+  {name:'Jamiatul Madina Soro', students:[
+    {rank:1,name:'ARSHAD ALAM',class:'IBTIDAIYA',percent:90.80,img:'images/arshad.jpg'},
+    {rank:2,name:'ABU SAAD',class:'IBTIDAIYA',percent:89,img:'images/saad.jpg'},
+    {rank:3,name:'ISARUDDIN MALIK',class:'DUAM',percent:84.40,img:'images/malik.jpg'}]},
+    
+  {name:'Jamiatul Madina Dhanbad', students:[
+    {rank:1,name:'MD ANAS',class:'IBTIDAIYA',percent:95.60,img:'images/anas.jpg'},
+    {rank:2,name:'MD ASJAD',class:'IBTIDAIYA',percent:95.40,img:'images/asjad.jpg'},
+    {rank:3,name:'MD MOHSIN',class:'IBTIDAIYA',percent:89.20,img:'images/mohsin.jpg'}]},
+    
+  {name:'Jamiatul Madina Ranchi Pundag', students:[
+    {rank:1,name:'GULAM MUHIUDDIN',class:'SALISA',percent:91.88,img:'images/gulam.jpg'},
+    {rank:2,name:'SAQLAIN',class:'SANIA',percent:91.50,img:'images/saqlain.jpg'},
+    {rank:3,name:'HASSAN',class:'RABIYA',percent:88,img:'images/hassan.jpg'}]},
+    
+  {name:'Jamiatul Madina Jamshedpur', students:[
+    {rank:1,name:'SIRAJUDDIN',class:'ULA',percent:88.57,img:'images/siraj.jpg'},
+    {rank:2,name:'FARHAN QURESHI',class:'ULA',percent:86.60,img:'images/farhan.jpg'},
+    {rank:3,name:'ZUBAIR ANSARI',class:'AWWAL',percent:85.29,img:'images/zubair.jpg'}]},
+    
+  {name:'Jamiatul Madina Ilahinagar', students:[
+    {rank:1,name:'AHMAD RAZA',class:'ULA',percent:87,img:'images/ahmad.jpg'},
+    {rank:2,name:'SAMIR RAZA',class:'IBTIDAIYA',percent:87,img:'images/samir.jpg'},
+    {rank:3,name:'ARBAZ RAZA',class:'IBTIDAIYA',percent:85,img:'images/arbaz.jpg'}]}
+];
+
+const container=document.getElementById('schoolsContainer');
+function renderSchools(){
+  container.innerHTML='';
+  schools.forEach(sch=>{
+    const div=document.createElement('div');div.className='card';
+    div.innerHTML=`
+      <h3>${sch.name}</h3>
+      <table>
+        <thead><tr>
+          <th>Rank</th><th>Name</th><th>Class</th><th>Percentage</th><th>Photo</th>
+        </tr></thead>
+        <tbody>
+          ${sch.students.map(s=>`
+            <tr>
+              <td>${s.rank}</td>
+              <td>${s.name}</td>
+              <td>${s.class}</td>
+              <td>${s.percent}%</td>
+              <td><img src="${s.img}" alt="${s.name}"></td>
+            </tr>`).join('')}
+        </tbody>
+      </table>`;
+    container.appendChild(div);
+  });
+}
+renderSchools();
+
+function getAllStudents(){
+  return schools.flatMap(s=>s.students.map(st=>({...st,school:s.name})));
+}
+function computeRegionTop3(){
+  const top3=getAllStudents().sort((a,b)=>b.percent-a.percent).slice(0,3);
+  const wrap=document.getElementById('regionWinners');
+  wrap.innerHTML='';
+  top3.forEach((s,i)=>{
+    const classes=['gold','silver','bronze'];
+    const badges=['🥇','🥈','🥉'];
+    const d=document.createElement('div');d.className='winner '+classes[i];
+    d.innerHTML=`<span class="badge">${badges[i]}</span>
+                 <img src="${s.img}" alt="${s.name}">
+                 <div>${s.name}</div>
+                 <div>${s.percent}% — ${s.school}</div>`;
+    wrap.appendChild(d);
+  });
+}
+computeRegionTop3();
+
+function updateDate(){document.getElementById('datetime').innerText=new Date().toLocaleString();}
+setInterval(updateDate,1000);updateDate();
+
+function exportCSV(){
+  const rows=[["School","Rank","Name","Class","Percentage"]];
+  schools.forEach(s=>{
+    s.students.forEach(st=>{
+      rows.push([s.name,st.rank,st.name,st.class,st.percent+"%"]);
+    });
+  });
+  let csvContent=rows.map(r=>r.join(",")).join("\n");
+  const blob=new Blob([csvContent],{type:"text/csv;charset=utf-8;"});
+  const link=document.createElement("a");
+  link.href=URL.createObjectURL(blob);
+  link.download="students.csv";
+  link.click();
+}
+</script>
+</body>
+</html>
